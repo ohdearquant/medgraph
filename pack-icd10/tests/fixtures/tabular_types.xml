@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ICD10CM.tabular>
+  <version>2026-fixture</version>
+  <chapter>
+    <name>4</name>
+    <desc>Endocrine, nutritional and metabolic diseases (E00-E89)</desc>
+    <section id="E08-E13">
+      <desc>Diabetes mellitus (E08-E13)</desc>
+      <diag>
+        <name>E10</name>
+        <desc>Type 1 diabetes mellitus</desc>
+        <diag>
+          <name>E10.2</name>
+          <desc>Type 1 diabetes mellitus with kidney complications</desc>
+          <diag>
+            <name>E10.21</name>
+            <desc>Type 1 diabetes mellitus with diabetic nephropathy</desc>
+          </diag>
+          <diag>
+            <name>E10.22</name>
+            <desc>Type 1 diabetes mellitus with diabetic chronic kidney disease</desc>
+          </diag>
+        </diag>
+      </diag>
+      <diag>
+        <name>E11</name>
+        <desc>Type 2 diabetes mellitus</desc>
+        <diag>
+          <name>E11.2</name>
+          <desc>Type 2 diabetes mellitus with kidney complications</desc>
+          <diag>
+            <name>E11.21</name>
+            <desc>Type 2 diabetes mellitus with diabetic nephropathy</desc>
+          </diag>
+          <diag>
+            <name>E11.22</name>
+            <desc>Type 2 diabetes mellitus with diabetic chronic kidney disease</desc>
+          </diag>
+        </diag>
+      </diag>
+      <diag>
+        <name>E13</name>
+        <desc>Other specified diabetes mellitus</desc>
+        <diag>
+          <name>E13.2</name>
+          <desc>Other specified diabetes mellitus with kidney complications</desc>
+          <diag>
+            <name>E13.22</name>
+            <desc>Other specified diabetes mellitus with diabetic chronic kidney disease</desc>
+          </diag>
+        </diag>
+      </diag>
+    </section>
+  </chapter>
+  <chapter>
+    <name>14</name>
+    <desc>Diseases of the genitourinary system (N00-N99)</desc>
+    <section id="N17-N19">
+      <desc>Acute kidney failure and chronic kidney disease (N17-N19)</desc>
+      <diag>
+        <name>N18</name>
+        <desc>Chronic kidney disease (CKD)</desc>
+        <diag>
+          <name>N18.1</name>
+          <desc>Chronic kidney disease, stage 1</desc>
+        </diag>
+        <diag>
+          <name>N18.2</name>
+          <desc>Chronic kidney disease, stage 2 (mild)</desc>
+        </diag>
+        <diag>
+          <name>N18.3</name>
+          <desc>Chronic kidney disease, stage 3 (moderate)</desc>
+          <diag>
+            <name>N18.30</name>
+            <desc>Chronic kidney disease, stage 3 unspecified</desc>
+          </diag>
+        </diag>
+        <diag>
+          <name>N18.4</name>
+          <desc>Chronic kidney disease, stage 4 (severe)</desc>
+        </diag>
+      </diag>
+    </section>
+  </chapter>
+</ICD10CM.tabular>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ICD10CM.index>
+  <version>2026-fixture</version>
+  <title>ICD-10-CM INDEX TO DISEASES and INJURIES (fixture)</title>
+  <letter>
+    <title>D</title>
+    <mainTerm>
+      <title>Diabetes, diabetic<nemod>(mellitus) (sugar)</nemod></title>
+      <term level="1">
+        <title>type 1</title>
+        <term level="2">
+          <title>with</title>
+          <term level="3">
+            <title>chronic kidney disease</title>
+            <code>E10.22</code>
+          </term>
+        </term>
+      </term>
+      <term level="1">
+        <title>type 2</title>
+        <term level="2">
+          <title>with</title>
+          <term level="3">
+            <title>chronic kidney disease</title>
+            <code>E11.22</code>
+          </term>
+        </term>
+      </term>
+      <term level="1">
+        <title>specified NEC</title>
+        <term level="2">
+          <title>with</title>
+          <term level="3">
+            <title>chronic kidney disease</title>
+            <code>E13.22</code>
+          </term>
+        </term>
+      </term>
+    </mainTerm>
+  </letter>
+  <letter>
+    <title>K</title>
+    <mainTerm>
+      <title>Disease, diseased</title>
+      <term level="1">
+        <title>kidney</title>
+        <term level="2">
+          <title>chronic</title>
+          <term level="3">
+            <title>stage 1</title>
+            <code>N18.1</code>
+          </term>
+          <term level="3">
+            <title>stage 2</title>
+            <code>N18.2</code>
+          </term>
+          <term level="3">
+            <title>stage 3</title>
+            <code>N18.30</code>
+          </term>
+          <term level="3">
+            <title>stage 4</title>
+            <code>N18.4</code>
+          </term>
+        </term>
+      </term>
+    </mainTerm>
+  </letter>
+</ICD10CM.index>

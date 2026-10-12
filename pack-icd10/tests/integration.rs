@@ -1010,3 +1010,116 @@ async fn pack_search_ranks_as_runtime_hybrid_search() {
     assert!(non_empty > 10, "only {non_empty} comparisons had hits");
     assert!(boosted > 0, "no query exercised the exact-title boost");
 }
+
+/// The text index is trigram: a query word under three characters produces no token and drops out of the
+/// match, so the digit in "type 2" never constrained it and type 1 codes ranked beside (and above) type 2.
+/// A candidate whose description or Index path holds every digit of the mention now comes first.
+#[tokio::test]
+async fn resolve_ranks_the_candidates_that_carry_the_mentions_digit_first() {
+    let (registry, _rt) = build_registry();
+    registry
+        .dispatch(
+            "icd10.ingest",
+            json!({
+                "tabular_path": fixture("tabular_types.xml"),
+                "index_path": fixture("index_types.xml"),
+            }),
+        )
+        .await
+        .expect("icd10.ingest dispatches");
+
+    let codes_for = |result: &serde_json::Value| -> Vec<String> {
+        result["mentions"][0]["candidates"]
+            .as_array()
+            .expect("candidates array")
+            .iter()
+            .map(|c| c["code"].as_str().expect("code").to_string())
+            .collect()
+    };
+
+    let type_2 = codes_for(
+        &resolve(
+            &registry,
+            json!([{"text": "type 2 diabetes with diabetic chronic kidney disease"}]),
+        )
+        .await,
+    );
+    assert_eq!(
+        type_2.first().map(String::as_str),
+        Some("E11.22"),
+        "type 2 mention: E11.22 first; got {type_2:?}"
+    );
+    let last_type_2 = type_2.iter().rposition(|c| c.starts_with("E11")).unwrap();
+    assert!(
+        type_2[..=last_type_2].iter().all(|c| c.starts_with("E11")),
+        "every type 2 code ahead of every code without the digit; got {type_2:?}"
+    );
+
+    let type_1 = codes_for(
+        &resolve(
+            &registry,
+            json!([{"text": "type 1 diabetes with diabetic chronic kidney disease"}]),
+        )
+        .await,
+    );
+    assert_eq!(
+        type_1.first().map(String::as_str),
+        Some("E10.22"),
+        "type 1 mention: E10.22 first; got {type_1:?}"
+    );
+
+    // No digit in the mention: nothing is demoted, every family is still a candidate.
+    let no_digit = codes_for(
+        &resolve(
+            &registry,
+            json!([{"text": "diabetes with diabetic chronic kidney disease"}]),
+        )
+        .await,
+    );
+    for code in ["E10.22", "E11.22", "E13.22"] {
+        assert!(
+            no_digit.iter().any(|c| c == code),
+            "{code} missing: {no_digit:?}"
+        );
+    }
+}
+
+/// Same trigram drop for a stage: "stage 3" must not rank stage 1 and stage 2 beside it.
+#[tokio::test]
+async fn resolve_ranks_the_stage_the_mention_names_first() {
+    let (registry, _rt) = build_registry();
+    registry
+        .dispatch(
+            "icd10.ingest",
+            json!({
+                "tabular_path": fixture("tabular_types.xml"),
+                "index_path": fixture("index_types.xml"),
+            }),
+        )
+        .await
+        .expect("icd10.ingest dispatches");
+
+    let result = resolve(
+        &registry,
+        json!([{"text": "chronic kidney disease stage 3"}]),
+    )
+    .await;
+    let codes: Vec<String> = result["mentions"][0]["candidates"]
+        .as_array()
+        .expect("candidates array")
+        .iter()
+        .map(|c| c["code"].as_str().expect("code").to_string())
+        .collect();
+    assert_eq!(
+        codes.first().map(String::as_str),
+        Some("N18.30"),
+        "stage 3 mention: N18.30 first; got {codes:?}"
+    );
+    for other in ["N18.1", "N18.2", "N18.4"] {
+        let pos = codes.iter().position(|c| c == other);
+        assert!(
+            pos.is_none_or(|p| p > 0),
+            "{other} must not lead a stage 3 mention; got {codes:?}"
+        );
+    }
+}

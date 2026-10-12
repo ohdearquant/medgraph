@@ -31,6 +31,10 @@
 //! entity (`TextFilter.record_kinds` cannot do it: the index's `record_kind`
 //! is the entity kind, `"concept"` for every icd10 subtype). Family
 //! expansion, sex/age and the unknown list are unchanged by `text_mode`.
+//!
+//! The text index is trigram, so a mention's one- and two-digit words ("2" in "type 2") never
+//! constrain a text arm. Candidates that carry every such digit in their description or Index
+//! path are ordered ahead of those that do not; nothing is removed.
 
 use std::collections::{HashMap, HashSet};
 
@@ -505,15 +509,21 @@ async fn resolve_one_mention(
         }
     }
 
-    // ── Render candidates, ordered by best (lowest) arm rank, ties broken
-    //    by (descending) arm count, then by code (ascending). ───────────────
+    // ── Render candidates, ordered by how many of the mention's digit words
+    //    (see `short_digit_words`) they do not carry, then by best (lowest) arm
+    //    rank, ties broken by (descending) arm count, then by code
+    //    (ascending). A mention with no digit word, or whose digits no
+    //    candidate carries, keeps the order it always had. ───────────────────
     //    `candidates` is a HashMap, whose iteration order changes from one
     //    map instance to the next, so without the code key every tie (e.g.
     //    all the family siblings one pointer expands to, which share its
     //    rank) came out in a different order on every call, and a caller
     //    capping the list kept a different subset each time.
-    let mut rendered: Vec<(u32, usize, String, Value)> = Vec::with_capacity(candidates.len());
+    let digits = short_digit_words(text);
+    let mut rendered: Vec<(usize, u32, usize, String, Value)> =
+        Vec::with_capacity(candidates.len());
     for (_, acc) in candidates {
+        let missing = missing_digit_count(&acc, &digits);
         let best_rank = acc.matched.iter().map(|m| m.rank).min().unwrap_or(u32::MAX);
         let arm_count = acc
             .matched
@@ -522,6 +532,7 @@ async fn resolve_one_mention(
             .collect::<HashSet<_>>()
             .len();
         rendered.push((
+            missing,
             best_rank,
             arm_count,
             acc.entity.name.clone(),
@@ -530,11 +541,12 @@ async fn resolve_one_mention(
     }
     rendered.sort_by(|a, b| {
         a.0.cmp(&b.0)
-            .then(b.1.cmp(&a.1))
-            .then_with(|| a.2.cmp(&b.2))
+            .then(a.1.cmp(&b.1))
+            .then(b.2.cmp(&a.2))
+            .then_with(|| a.3.cmp(&b.3))
     });
     let candidate_count = rendered.len();
-    let candidates_json: Vec<Value> = rendered.into_iter().map(|(_, _, _, v)| v).collect();
+    let candidates_json: Vec<Value> = rendered.into_iter().map(|(_, _, _, _, v)| v).collect();
 
     let mut chapters: Vec<String> = chapters_reached.into_iter().collect();
     chapters.sort();
@@ -797,6 +809,42 @@ fn words_of(text: &str) -> Vec<String> {
         .filter(|w| !w.is_empty())
         .map(String::from)
         .collect()
+}
+
+/// The mention's digit words of one or two characters ("2" in "type 2 diabetes", "3" in "stage 3").
+/// The text index tokenizes by trigram, so a word under three characters produces no token and drops
+/// out of the match (`khive-db` `FTS5_TRIGRAM_MIN_SAFE_LEN`): the text arms cannot tell type 1 from
+/// type 2, or stage 3 from stage 4.
+fn short_digit_words(text: &str) -> Vec<String> {
+    let mut digits: Vec<String> = words_of(text)
+        .into_iter()
+        .filter(|w| w.len() <= 2 && w.chars().all(|c| c.is_ascii_digit()))
+        .collect();
+    digits.sort();
+    digits.dedup();
+    digits
+}
+
+/// How many of the mention's `digits` the candidate does not carry as a whole word, in its description
+/// or in the Index path that matched it.
+fn missing_digit_count(acc: &CandidateAcc, digits: &[String]) -> usize {
+    if digits.is_empty() {
+        return 0;
+    }
+    let desc = acc
+        .entity
+        .properties
+        .as_ref()
+        .and_then(|p| p.get("desc"))
+        .and_then(Value::as_str)
+        .unwrap_or_default();
+    let mut carried: HashSet<String> = words_of(desc).into_iter().collect();
+    for m in &acc.matched {
+        if let Some(path) = &m.term_path {
+            carried.extend(words_of(path));
+        }
+    }
+    digits.iter().filter(|d| !carried.contains(*d)).count()
 }
 
 /// A `links_to` edge the ingest wrote for a `see` reference (as opposed to
