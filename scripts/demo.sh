@@ -17,6 +17,10 @@ mkdir -p "$STORE"
 # kkernel refuses to serve from a directory that group or other can write. mkdir -p follows the
 # caller's umask (0002 on a stock Ubuntu account gives 0775), so set the mode explicitly.
 chmod 700 "$STORE"
+# The same check walks every directory above the store, and a clone made under umask 0002 leaves
+# the checkout root and data/ group-writable too. Both are inside this checkout, so fix them here.
+# If a directory above the checkout is the one at fault, the hint printed on failure names it.
+chmod g-w,o-w "$ROOT" "$ROOT/data" || true
 if [ ! -f "$CFG" ]; then
   cat > "$CFG" <<TOML
 [actor]
@@ -32,7 +36,27 @@ fi
 
 # KHIVE_NO_DAEMON keeps every call in this process: a khive daemon already running on the machine
 # (another version, another store) is never contacted.
-kk() { KHIVE_NO_DAEMON=1 KHIVE_PACKS=kg,icd10 KHIVE_REQUEST_READ_TIMEOUT_SECS=3600 "$BIN" exec --config "$CFG" --strict "$@"; }
+# kkernel will not serve from a store whose path has a group- or world-writable directory above it
+# (a sticky directory such as /tmp is allowed). When it refuses, list the directories that qualify.
+writable_ancestors_hint() {
+  local d perm found=""
+  d="$(cd "$ROOT" && pwd -P)"
+  while [ "$d" != "/" ]; do
+    perm="$(ls -ld "$d" | cut -c1-10)"
+    if { [ "${perm:5:1}" = w ] || [ "${perm:8:1}" = w ]; } && [ "${perm:9:1}" != t ] && [ "${perm:9:1}" != T ]; then
+      found="$found $d"
+    fi
+    d="$(dirname "$d")"
+  done
+  if [ -n "$found" ]; then
+    echo "kkernel refuses a store with a group- or world-writable directory above it. Writable here:$found" >&2
+    echo "Clone into a directory that is not group- or world-writable (for example one with mode 755), or run chmod g-w on each directory listed above." >&2
+  fi
+}
+kk() {
+  local rc
+  KHIVE_NO_DAEMON=1 KHIVE_PACKS=kg,icd10 KHIVE_REQUEST_READ_TIMEOUT_SECS=3600 "$BIN" exec --config "$CFG" --strict "$@" || { rc=$?; writable_ancestors_hint; return "$rc"; }
+}
 pp() { if command -v jq >/dev/null 2>&1; then jq .; else cat; fi; }
 
 if [ ! -f "$STORE/.loaded" ]; then
