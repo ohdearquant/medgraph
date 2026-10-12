@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ICD10CM.tabular>
+  <version>2026-fixture-verify</version>
+  <chapter>
+    <name>8</name>
+    <desc>Diseases of the ear and mastoid process (H60-H95)</desc>
+    <section id="H65-H75">
+      <desc>Diseases of middle ear and mastoid (H65-H75)</desc>
+      <diag>
+        <name>H66.9</name>
+        <desc>Otitis media, unspecified</desc>
+        <diag>
+          <name>H66.90</name>
+          <desc>Otitis media, unspecified, unspecified ear</desc>
+        </diag>
+        <diag>
+          <name>H66.91</name>
+          <desc>Otitis media, unspecified, right ear</desc>
+        </diag>
+        <diag>
+          <name>H66.92</name>
+          <desc>Otitis media, unspecified, left ear</desc>
+        </diag>
+        <diag>
+          <name>H66.93</name>
+          <desc>Otitis media, unspecified, bilateral</desc>
+        </diag>
+      </diag>
+    </section>
+  </chapter>
+  <chapter>
+    <name>14</name>
+    <desc>Diseases of the genitourinary system (N00-N99)</desc>
+    <section id="N70-N77">
+      <desc>Inflammatory diseases of female pelvic organs (N70-N77)</desc>
+      <diag>
+        <name>N70</name>
+        <desc>Salpingitis and oophoritis</desc>
+      </diag>
+    </section>
+  </chapter>
+  <chapter>
+    <name>11</name>
+    <desc>Diseases of the digestive system (K00-K95)</desc>
+    <section id="K80-K87">
+      <desc>Disorders of gallbladder, biliary tract and pancreas (K80-K87)</desc>
+      <diag>
+        <name>K82</name>
+        <desc>Other diseases of gallbladder</desc>
+        <diag>
+          <name>K82.4</name>
+          <desc>Cholesterolosis of gallbladder</desc>
+          <inclusionTerm>
+            <note>Strawberry gallbladder</note>
+          </inclusionTerm>
+        </diag>
+      </diag>
+    </section>
+    <section id="K20-K31">
+      <desc>Diseases of esophagus, stomach and duodenum (K20-K31)</desc>
+      <diag>
+        <name>K21</name>
+        <desc>Gastro-esophageal reflux disease</desc>
+        <diag>
+          <name>K21.0</name>
+          <desc>Gastro-esophageal reflux disease with esophagitis</desc>
+        </diag>
+        <diag>
+          <name>K21.9</name>
+          <desc>Gastro-esophageal reflux disease without esophagitis</desc>
+        </diag>
+      </diag>
+    </section>
+  </chapter>
+  <chapter>
+    <name>6</name>
+    <desc>Diseases of the nervous system (G00-G99)</desc>
+    <section id="G30-G32">
+      <desc>Other degenerative diseases of the nervous system (G30-G32)</desc>
+      <diag>
+        <name>G30</name>
+        <desc>Alzheimer's disease</desc>
+        <diag>
+          <name>G30.9</name>
+          <desc>Alzheimer's disease, unspecified</desc>
+          <useAdditionalCode>
+            <note>Use additional code to identify dementia (F02.80)</note>
+          </useAdditionalCode>
+        </diag>
+      </diag>
+    </section>
+  </chapter>
+  <chapter>
+    <name>5</name>
+    <desc>Mental, Behavioral and Neurodevelopmental disorders (F01-F99)</desc>
+    <section id="F01-F09">
+      <desc>Mental disorders due to known physiological conditions (F01-F09)</desc>
+      <diag>
+        <name>F02</name>
+        <desc>Dementia in other diseases classified elsewhere</desc>
+        <diag>
+          <name>F02.80</name>
+          <desc>Dementia in other diseases classified elsewhere without behavioral disturbance</desc>
+          <codeFirst>
+            <note>code first the underlying physiological condition (G30.9)</note>
+          </codeFirst>
+        </diag>
+      </diag>
+    </section>
+  </chapter>
+  <chapter>
+    <name>13</name>
+    <desc>Diseases of the musculoskeletal system and connective tissue (M00-M99)</desc>
+    <section id="M70-M79">
+      <desc>Other soft tissue disorders (M70-M79)</desc>
+      <diag>
+        <name>M79.6</name>
+        <desc>Pain in limb, hand, foot, fingers and toes</desc>
+        <diag>
+          <name>M79.67</name>
+          <desc>Pain in foot and toes</desc>
+          <!-- Fixture: the unspecified-toe sibling is
+               declared before the unspecified-foot sibling, so a sibling
+               list built in declaration order reproduces the old
+               property-based `find_unspecified_sibling` bug (it returned
+               the first "no laterality of its own + desc says unspecified"
+               match, which was the toe code, not the foot code). -->
+          <diag>
+            <name>M79.674</name>
+            <desc>Pain in right toe(s)</desc>
+          </diag>
+          <diag>
+            <name>M79.675</name>
+            <desc>Pain in left toe(s)</desc>
+          </diag>
+          <diag>
+            <name>M79.676</name>
+            <desc>Pain in unspecified toe(s)</desc>
+          </diag>
+          <diag>
+            <name>M79.671</name>
+            <desc>Pain in right foot</desc>
+          </diag>
+          <diag>
+            <name>M79.672</name>
+            <desc>Pain in left foot</desc>
+          </diag>
+          <diag>
+            <name>M79.673</name>
+            <desc>Pain in unspecified foot</desc>
+          </diag>
+        </diag>
+      </diag>
+      <diag>
+        <name>M54</name>
+        <desc>Dorsalgia</desc>
+        <diag>
+          <name>M54.50</name>
+          <desc>Low back pain</desc>
+        </diag>
+        <diag>
+          <name>M54.59</name>
+          <desc>Other back pain</desc>
+        </diag>
+      </diag>
+    </section>
+  </chapter>
+  <chapter>
+    <name>21</name>
+    <desc>Factors influencing health status and contact with health services (Z00-Z99)</desc>
+    <section id="Z77-Z99">
+      <desc>Persons with potential health hazards related to family and personal history and certain conditions influencing health status (Z77-Z99)</desc>
+      <diag>
+        <name>Z80</name>
+        <desc>Family history of primary malignant neoplasm of breast</desc>
+        <diag>
+          <name>Z80.3</name>
+          <desc>Family history of malignant neoplasm of breast</desc>
+        </diag>
+      </diag>
+    </section>
+    <section id="Z68">
+      <desc>Body mass index (BMI) (Z68)</desc>
+      <diag>
+        <name>Z68</name>
+        <desc>Body mass index (BMI)</desc>
+        <diag>
+          <name>Z68.30</name>
+          <desc>Body mass index (BMI) 30.0-30.9, adult</desc>
+        </diag>
+      </diag>
+    </section>
+  </chapter>
+  <chapter>
+    <name>9</name>
+    <desc>Diseases of the circulatory system (I00-I99)</desc>
+    <section id="I10-I16">
+      <desc>Hypertensive diseases (I10-I16)</desc>
+      <diag>
+        <name>I10</name>
+        <desc>Essential (primary) hypertension</desc>
+      </diag>
+      <diag>
+        <name>I12</name>
+        <desc>Hypertensive chronic kidney disease</desc>
+        <diag>
+          <name>I12.9</name>
+          <desc>Hypertensive chronic kidney disease with stage 1 through stage 4 chronic kidney disease, or unspecified chronic kidney disease</desc>
+        </diag>
+      </diag>
+    </section>
+  </chapter>
+  <chapter>
+    <name>14</name>
+    <desc>Diseases of the genitourinary system (N00-N99)</desc>
+    <section id="N17-N19">
+      <desc>Acute kidney failure and chronic kidney disease (N17-N19)</desc>
+      <diag>
+        <name>N18</name>
+        <desc>Chronic kidney disease (CKD)</desc>
+        <diag>
+          <name>N18.9</name>
+          <desc>Chronic kidney disease, unspecified</desc>
+        </diag>
+      </diag>
+    </section>
+  </chapter>
+  <chapter>
+    <name>4</name>
+    <desc>Endocrine, nutritional and metabolic diseases (E00-E89)</desc>
+    <section id="E08-E13">
+      <desc>Diabetes mellitus (E08-E13)</desc>
+      <diag>
+        <name>E11</name>
+        <desc>Type 2 diabetes mellitus</desc>
+        <diag>
+          <name>E11.9</name>
+          <desc>Type 2 diabetes mellitus without complications</desc>
+        </diag>
+      </diag>
+    </section>
+    <section id="E65-E68">
+      <desc>Overweight, obesity and other hyperalimentation (E65-E68)</desc>
+      <diag>
+        <name>E66</name>
+        <desc>Overweight and obesity</desc>
+        <diag>
+          <name>E66.9</name>
+          <desc>Obesity, unspecified</desc>
+        </diag>
+      </diag>
+    </section>
+  </chapter>
+</ICD10CM.tabular>

@@ -1,0 +1,29 @@
+[package]
+name = "khive-pack-icd10"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+description = "ICD-10-CM FY2026 knowledge topology as a khive pack: ingest, neighborhood, check."
+publish = false
+
+[dependencies]
+khive-types = { workspace = true }
+khive-runtime = { workspace = true }
+khive-storage = { workspace = true }
+khive-score = { workspace = true }
+khive-fusion = { workspace = true }
+khive-vamana = { workspace = true }
+inventory = { workspace = true }
+async-trait = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+tokio = { workspace = true }
+uuid = { workspace = true }
+chrono = { workspace = true }
+regex = { workspace = true }
+quick-xml = { workspace = true }
+anyhow = { workspace = true }
+
+[dev-dependencies]
+tokio = { workspace = true, features = ["test-util", "macros", "rt-multi-thread"] }
+khive-pack-kg = { git = "https://github.com/ohdearquant/khive", rev = "5ccfedad5c084b8026e6605a07aa280c7c8450cd" }

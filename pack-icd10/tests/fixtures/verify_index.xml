@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ICD10CM.index>
+  <version>2026-fixture-verify</version>
+  <title>ICD-10-CM INDEX TO DISEASES and INJURIES (fixture, verify tests)</title>
+  <letter>
+    <title>O</title>
+    <mainTerm>
+      <title>Otitis media</title>
+      <code>H66.90</code>
+      <term level="1">
+        <title>right</title>
+        <code>H66.91</code>
+      </term>
+      <term level="1">
+        <title>left</title>
+        <code>H66.92</code>
+      </term>
+      <term level="1">
+        <title>bilateral</title>
+        <code>H66.93</code>
+      </term>
+    </mainTerm>
+  </letter>
+  <letter>
+    <title>S</title>
+    <mainTerm>
+      <title>Salpingitis</title>
+      <code>N70</code>
+    </mainTerm>
+  </letter>
+  <letter>
+    <title>C</title>
+    <mainTerm>
+      <title>Cholesterolosis<nemod>(-osis)</nemod></title>
+      <term level="1">
+        <title>gallbladder</title>
+        <code>K82.4</code>
+      </term>
+    </mainTerm>
+  </letter>
+  <letter>
+    <title>D</title>
+    <mainTerm>
+      <title>Dementia</title>
+      <code>F02.80</code>
+    </mainTerm>
+  </letter>
+  <letter>
+    <title>A</title>
+    <mainTerm>
+      <title>Alzheimer's disease</title>
+      <code>G30.9</code>
+    </mainTerm>
+  </letter>
+  <letter>
+    <title>G</title>
+    <mainTerm>
+      <!-- Fixture: a bare main-term entry (no nested
+           <term>), with an inline parenthesized modifier NOT wrapped in a
+           <nemod> element (the real Index XML carries some modifiers this
+           way) — reaches K21.9 directly, no subterm, so it is the Index
+           default for this term and must auto-settle the axis. -->
+      <title>GERD (gastroesophageal reflux disease)</title>
+      <code>K21.9</code>
+    </mainTerm>
+  </letter>
+  <letter>
+    <title>B</title>
+    <mainTerm>
+      <title>Backache</title>
+      <term level="1">
+        <!-- Fixture: a subterm carrying an inline
+             parenthesized nonessential modifier — must be stripped before
+             matching against the quote and before being reported in
+             terms_needed. -->
+        <title>low (postural)</title>
+        <code>M54.50</code>
+      </term>
+    </mainTerm>
+  </letter>
+</ICD10CM.index>

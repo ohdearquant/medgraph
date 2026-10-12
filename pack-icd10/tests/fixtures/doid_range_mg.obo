@@ -1,0 +1,9 @@
+format-version: 1.2
+ontology: doid (fixture: a block-range ICD10CM xref)
+
+[Term]
+id: DOID:9351
+name: diabetes mellitus
+xref: ICD10CM:E08-E13
+xref: MESH:D003920
+is_a: DOID:0060224 ! disease of metabolism

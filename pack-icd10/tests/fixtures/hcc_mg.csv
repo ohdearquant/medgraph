@@ -1,0 +1,45 @@
+"ICD-10-CM Codes, ESRD, CMS-HCC and RxHCC Models",,,,,,,,,,,
+Includes ICD-10 codes valid in FY2025 and FY2026,,,,,,,,,,,
+,,,,,,,,,,,
+"Diagnosis
+Code",Description,"CMS-HCC
+ESRD
+Model
+Category
+V21","CMS-HCC
+ESRD
+Model
+Category
+V24","CMS-HCC
+Model
+Category
+V22","CMS-HCC
+Model
+Category
+V28","RxHCC
+Model
+Category
+V08","CMS-HCC
+ESRD Model
+Category
+V21 for 2026
+Payment Year","CMS-HCC
+ESRD Model
+Category
+V24 for 2026
+Payment Year","CMS-HCC
+Model
+Category
+V22 for 2026
+Payment Year","CMS-HCC
+Model
+Category
+V28 for 2026
+Payment Year","RxHCC
+Model
+Category
+V08 for 2026
+Payment Year"
+E11.9,Type 2 diabetes mellitus without complications,19,19,19,38,,Yes,Yes,Yes,Yes,No
+I10,Essential (primary) hypertension,,,,,,No,No,No,No,No
+Z99999X,unmapped code not in graph,1,1,1,1,,Yes,Yes,Yes,Yes,No

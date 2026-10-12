@@ -1,0 +1,8 @@
+/target/
+/data/raw/
+/data/store/
+*.db
+*.db-shm
+*.db-wal
+.env
+.khive/

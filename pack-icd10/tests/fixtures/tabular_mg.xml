@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ICD10CM.tabular>
+  <version>2026-fixture-mg</version>
+  <chapter>
+    <name>19</name>
+    <desc>Injury, poisoning and certain other consequences of external causes (S00-T88)</desc>
+    <section id="S00-S09">
+      <desc>Injuries to the head (S00-S09)</desc>
+      <diag>
+        <name>S06</name>
+        <desc>Intracranial injury</desc>
+        <includes>
+          <note>traumatic brain injury</note>
+        </includes>
+        <codeAlso>
+          <note>any associated:</note>
+          <note>open wound of head (S01.-)</note>
+        </codeAlso>
+        <useAdditionalCode>
+          <note>code, if applicable, to identify mild neurocognitive disorders due to known physiological condition (F06.7-)</note>
+        </useAdditionalCode>
+        <excludes1>
+          <note>head injury NOS (S09.90)</note>
+        </excludes1>
+        <sevenChrDef>
+          <extension char="A">initial encounter</extension>
+          <extension char="D">subsequent encounter</extension>
+          <extension char="S">sequela</extension>
+        </sevenChrDef>
+        <diag>
+          <name>S06.0</name>
+          <desc>Concussion</desc>
+          <inclusionTerm>
+            <note>Commotio cerebri</note>
+          </inclusionTerm>
+          <codeFirst>
+            <note>fixture-only structural pairing, not clinical guidance (K82.4)</note>
+          </codeFirst>
+          <diag placeholder="true">
+            <name>S06.0X</name>
+            <desc>Concussion</desc>
+            <diag>
+              <name>S06.0X0</name>
+              <desc>Concussion without loss of consciousness</desc>
+            </diag>
+            <diag>
+              <name>S06.0X9</name>
+              <desc>Concussion with loss of consciousness of unspecified duration</desc>
+            </diag>
+          </diag>
+        </diag>
+      </diag>
+    </section>
+    <section id="S60-S69">
+      <desc>Injuries to the wrist, hand and fingers (S60-S69)</desc>
+      <diag>
+        <name>S69</name>
+        <desc>Other and unspecified injuries of wrist, hand and fingers</desc>
+        <diag>
+          <name>S69.9</name>
+          <desc>Unspecified injury of wrist, hand and fingers</desc>
+          <sevenChrDef>
+            <extension char="A">initial encounter</extension>
+          </sevenChrDef>
+        </diag>
+      </diag>
+    </section>
+  </chapter>
+  <chapter>
+    <name>4</name>
+    <desc>Endocrine, nutritional and metabolic diseases (E00-E89)</desc>
+    <section id="E08-E13">
+      <desc>Diabetes mellitus (E08-E13)</desc>
+      <diag>
+        <name>E11</name>
+        <desc>Type 2 diabetes mellitus</desc>
+        <diag>
+          <name>E11.9</name>
+          <desc>Type 2 diabetes mellitus without complications</desc>
+        </diag>
+      </diag>
+    </section>
+  </chapter>
+  <chapter>
+    <name>9</name>
+    <desc>Diseases of the circulatory system (I00-I99)</desc>
+    <section id="I10-I16">
+      <desc>Hypertensive diseases (I10-I16)</desc>
+      <diag>
+        <name>I10</name>
+        <desc>Essential (primary) hypertension</desc>
+      </diag>
+      <diag>
+        <name>I11</name>
+        <desc>Hypertensive heart disease</desc>
+        <diag>
+          <name>I11.9</name>
+          <desc>Hypertensive heart disease without heart failure</desc>
+        </diag>
+      </diag>
+      <diag>
+        <name>I12</name>
+        <desc>Hypertensive chronic kidney disease</desc>
+        <diag>
+          <name>I12.9</name>
+          <desc>Hypertensive chronic kidney disease with stage 1 through stage 4 chronic kidney disease, or unspecified chronic kidney disease</desc>
+        </diag>
+      </diag>
+      <diag>
+        <name>I13</name>
+        <desc>Hypertensive heart and chronic kidney disease</desc>
+        <diag>
+          <name>I13.0</name>
+          <desc>Hypertensive heart and chronic kidney disease with heart failure and stage 1 through stage 4 chronic kidney disease, or unspecified chronic kidney disease</desc>
+        </diag>
+      </diag>
+    </section>
+    <section id="I30-I52">
+      <desc>Other forms of heart disease (I30-I52)</desc>
+      <diag>
+        <name>I50</name>
+        <desc>Heart failure</desc>
+        <diag>
+          <name>I50.9</name>
+          <desc>Heart failure, unspecified</desc>
+        </diag>
+      </diag>
+    </section>
+  </chapter>
+  <chapter>
+    <name>11</name>
+    <desc>Diseases of the digestive system (K00-K95)</desc>
+    <section id="K80-K87">
+      <desc>Disorders of gallbladder, biliary tract and pancreas (K80-K87)</desc>
+      <diag>
+        <name>K80</name>
+        <desc>Cholelithiasis</desc>
+        <diag>
+          <name>K80.0</name>
+          <desc>Calculus of gallbladder with acute cholecystitis</desc>
+        </diag>
+      </diag>
+      <diag>
+        <name>K81</name>
+        <desc>Cholecystitis</desc>
+        <diag>
+          <name>K81.9</name>
+          <desc>Cholecystitis, unspecified</desc>
+          <useAdditionalCode>
+            <note>fixture-only structural pairing, not clinical guidance (K80.0)</note>
+          </useAdditionalCode>
+        </diag>
+      </diag>
+      <diag>
+        <name>K82</name>
+        <desc>Other diseases of gallbladder</desc>
+        <excludes1>
+          <note>nonvisualization of gallbladder (R93.2)</note>
+          <note>postcholecystectomy syndrome (K91.5)</note>
+        </excludes1>
+        <diag>
+          <name>K82.0</name>
+          <desc>Obstruction of gallbladder</desc>
+          <excludes1>
+            <note>obstruction of gallbladder with cholelithiasis (K80.-)</note>
+          </excludes1>
+        </diag>
+        <diag>
+          <name>K82.4</name>
+          <desc>Cholesterolosis of gallbladder</desc>
+          <inclusionTerm>
+            <note>Strawberry gallbladder</note>
+          </inclusionTerm>
+          <excludes1>
+            <note>cholesterolosis of gallbladder with cholecystitis (K81.-)</note>
+            <note>cholesterolosis of gallbladder with cholelithiasis (K80.-)</note>
+          </excludes1>
+          <excludes2>
+            <note>cholecystitis (K81.9)</note>
+          </excludes2>
+          <codeAlso>
+            <note>cholecystitis (K81.9)</note>
+          </codeAlso>
+        </diag>
+        <diag>
+          <name>K82.5</name>
+          <desc>Unspecified disorder of gallbladder</desc>
+          <sevenChrDef>
+            <extension char="A">initial encounter</extension>
+          </sevenChrDef>
+        </diag>
+      </diag>
+      <diag>
+        <name>K91</name>
+        <desc>Intraoperative and postprocedural complications and disorders of digestive system, not elsewhere classified</desc>
+        <diag>
+          <name>K91.61</name>
+          <desc>Intraoperative hemorrhage and hematoma of a digestive system organ or structure complicating a digestive system procedure</desc>
+          <codeFirst>
+            <note>fixture-only structural pairing, not clinical guidance (K82.4)</note>
+          </codeFirst>
+        </diag>
+      </diag>
+    </section>
+  </chapter>
+  <chapter>
+    <name>14</name>
+    <desc>Diseases of the genitourinary system (N00-N99)</desc>
+    <section id="N17-N19">
+      <desc>Acute kidney injury and chronic kidney disease (N17-N19)</desc>
+      <diag>
+        <name>N18</name>
+        <desc>Chronic kidney disease (CKD)</desc>
+        <diag>
+          <name>N18.30</name>
+          <desc>Chronic kidney disease, stage 3 unspecified</desc>
+        </diag>
+      </diag>
+    </section>
+    <section id="N40-N53">
+      <desc>Diseases of male genital organs (N40-N53)</desc>
+      <diag>
+        <name>N40</name>
+        <desc>Enlarged prostate</desc>
+      </diag>
+    </section>
+    <section id="N70-N77">
+      <desc>Inflammatory diseases of female pelvic organs (N70-N77)</desc>
+      <diag>
+        <name>N70</name>
+        <desc>Salpingitis and oophoritis</desc>
+      </diag>
+    </section>
+  </chapter>
+  <chapter>
+    <name>8</name>
+    <desc>Diseases of the ear and mastoid process (H60-H95)</desc>
+    <section id="H65-H75">
+      <desc>Diseases of middle ear and mastoid (H65-H75)</desc>
+      <diag>
+        <name>H66</name>
+        <desc>Suppurative and unspecified otitis media</desc>
+        <diag>
+          <name>H66.9</name>
+          <desc>Otitis media, unspecified</desc>
+          <diag>
+            <name>H66.90</name>
+            <desc>Otitis media, unspecified, unspecified ear</desc>
+          </diag>
+          <diag>
+            <name>H66.91</name>
+            <desc>Otitis media, unspecified, right ear</desc>
+          </diag>
+          <diag>
+            <name>H66.92</name>
+            <desc>Otitis media, unspecified, left ear</desc>
+          </diag>
+        </diag>
+      </diag>
+    </section>
+  </chapter>
+  <chapter>
+    <name>16</name>
+    <desc>Certain conditions originating in the perinatal period (P00-P96)</desc>
+    <section id="P05-P08">
+      <desc>Disorders related to fetal growth (P05-P08)</desc>
+      <diag>
+        <name>P07</name>
+        <desc>Disorders related to short gestation and low birth weight, not elsewhere classified</desc>
+      </diag>
+    </section>
+  </chapter>
+</ICD10CM.tabular>

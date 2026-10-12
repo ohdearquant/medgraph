@@ -1,0 +1,3 @@
+{"mesh_id": "D003920", "mesh_name": "Diabetes Mellitus", "rela": "may_treat", "rxcui": "6809", "drug": "metformin", "tty": "IN"}
+{"mesh_id": "D003924", "mesh_name": "Diabetes Mellitus, Type 2", "rela": "may_treat", "rxcui": "6809", "drug": "metformin", "tty": "IN"}
+{"mesh_id": "D003866", "mesh_name": "Depressive Disorder", "rela": "may_treat", "rxcui": "36437", "drug": "sertraline hydrochloride", "tty": "PIN"}

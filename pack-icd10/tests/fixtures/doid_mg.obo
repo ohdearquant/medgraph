@@ -1,0 +1,28 @@
+format-version: 1.2
+ontology: doid (fixture)
+
+[Term]
+id: DOID:9352
+name: type 2 diabetes mellitus
+synonym: "non-insulin-dependent diabetes mellitus" EXACT []
+xref: ICD10CM:E11
+xref: MESH:D003924
+is_a: DOID:0060224 ! disease of metabolism
+
+[Term]
+id: DOID:9351
+name: diabetes mellitus
+xref: MESH:D003920
+is_a: DOID:0060224 ! disease of metabolism
+
+[Term]
+id: DOID:0080562
+name: young-onset type 2 diabetes mellitus
+xref: MESH:D003924
+is_a: DOID:9352 ! type 2 diabetes mellitus
+
+[Term]
+id: DOID:1470
+name: major depressive disorder
+xref: MESH:D003866
+is_a: DOID:0060224 ! disease of metabolism

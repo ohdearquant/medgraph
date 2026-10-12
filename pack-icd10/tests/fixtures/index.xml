@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ICD10CM.index>
+  <version>2026-fixture</version>
+  <title>ICD-10-CM INDEX TO DISEASES and INJURIES (fixture)</title>
+  <letter>
+    <title>C</title>
+    <mainTerm>
+      <title>Cholesterolosis<nemod>(-osis)</nemod></title>
+      <term level="1">
+        <title>gallbladder</title>
+        <code>K82.4</code>
+      </term>
+    </mainTerm>
+    <mainTerm>
+      <title>Cholesterol deposit</title>
+      <see>Cholesterolosis</see>
+    </mainTerm>
+    <mainTerm>
+      <title>Cholecystitis</title>
+      <code>K81.9</code>
+    </mainTerm>
+    <mainTerm>
+      <title>Concussion</title>
+      <code>S06.0X0</code>
+    </mainTerm>
+    <mainTerm>
+      <title>Concussive</title>
+      <see>Concussion</see>
+    </mainTerm>
+    <mainTerm>
+      <title>Gallbladder disorder NEC</title>
+      <seeAlso>Cholecystitis</seeAlso>
+      <code>K82</code>
+    </mainTerm>
+  </letter>
+</ICD10CM.index>

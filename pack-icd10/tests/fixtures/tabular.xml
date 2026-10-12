@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ICD10CM.tabular>
+  <version>2026-fixture</version>
+  <chapter>
+    <name>19</name>
+    <desc>Injury, poisoning and certain other consequences of external causes (S00-T88)</desc>
+    <section id="S00-S09">
+      <desc>Injuries to the head (S00-S09)</desc>
+      <diag>
+        <name>S06</name>
+        <desc>Intracranial injury</desc>
+        <includes>
+          <note>traumatic brain injury</note>
+        </includes>
+        <codeAlso>
+          <note>any associated:</note>
+          <note>open wound of head (S01.-)</note>
+        </codeAlso>
+        <useAdditionalCode>
+          <note>code, if applicable, to identify mild neurocognitive disorders due to known physiological condition (F06.7-)</note>
+        </useAdditionalCode>
+        <excludes1>
+          <note>head injury NOS (S09.90)</note>
+        </excludes1>
+        <sevenChrDef>
+          <extension char="A">initial encounter</extension>
+          <extension char="D">subsequent encounter</extension>
+          <extension char="S">sequela</extension>
+        </sevenChrDef>
+        <diag>
+          <name>S06.0</name>
+          <desc>Concussion</desc>
+          <inclusionTerm>
+            <note>Commotio cerebri</note>
+          </inclusionTerm>
+          <codeFirst>
+            <note>fixture-only structural pairing, not clinical guidance (K82.4)</note>
+          </codeFirst>
+          <diag placeholder="true">
+            <name>S06.0X</name>
+            <desc>Concussion</desc>
+            <diag>
+              <name>S06.0X0</name>
+              <desc>Concussion without loss of consciousness</desc>
+            </diag>
+            <diag>
+              <name>S06.0X9</name>
+              <desc>Concussion with loss of consciousness of unspecified duration</desc>
+            </diag>
+          </diag>
+        </diag>
+      </diag>
+    </section>
+  </chapter>
+  <chapter>
+    <name>9</name>
+    <desc>Diseases of the circulatory system (I00-I99)</desc>
+    <section id="I10-I16">
+      <desc>Hypertensive diseases (I10-I16)</desc>
+      <diag>
+        <name>I10</name>
+        <desc>Essential (primary) hypertension</desc>
+      </diag>
+    </section>
+  </chapter>
+  <chapter>
+    <name>11</name>
+    <desc>Diseases of the digestive system (K00-K95)</desc>
+    <section id="K80-K87">
+      <desc>Disorders of gallbladder, biliary tract and pancreas (K80-K87)</desc>
+      <diag>
+        <name>K80</name>
+        <desc>Cholelithiasis</desc>
+        <diag>
+          <name>K80.0</name>
+          <desc>Calculus of gallbladder with acute cholecystitis</desc>
+        </diag>
+      </diag>
+      <diag>
+        <name>K81</name>
+        <desc>Cholecystitis</desc>
+        <diag>
+          <name>K81.9</name>
+          <desc>Cholecystitis, unspecified</desc>
+          <useAdditionalCode>
+            <note>fixture-only structural pairing, not clinical guidance (K80.0)</note>
+          </useAdditionalCode>
+        </diag>
+      </diag>
+      <diag>
+        <name>K82</name>
+        <desc>Other diseases of gallbladder</desc>
+        <excludes1>
+          <note>nonvisualization of gallbladder (R93.2)</note>
+          <note>postcholecystectomy syndrome (K91.5)</note>
+        </excludes1>
+        <diag>
+          <name>K82.0</name>
+          <desc>Obstruction of gallbladder</desc>
+          <excludes1>
+            <note>obstruction of gallbladder with cholelithiasis (K80.-)</note>
+          </excludes1>
+        </diag>
+        <diag>
+          <name>K82.4</name>
+          <desc>Cholesterolosis of gallbladder</desc>
+          <inclusionTerm>
+            <note>Strawberry gallbladder</note>
+          </inclusionTerm>
+          <excludes1>
+            <note>cholesterolosis of gallbladder with cholecystitis (K81.-)</note>
+            <note>cholesterolosis of gallbladder with cholelithiasis (K80.-)</note>
+          </excludes1>
+          <excludes2>
+            <note>cholecystitis (K81.9)</note>
+          </excludes2>
+          <codeAlso>
+            <note>cholecystitis (K81.9)</note>
+          </codeAlso>
+        </diag>
+        <diag>
+          <name>K82.5</name>
+          <desc>Unspecified disorder of gallbladder</desc>
+          <sevenChrDef>
+            <extension char="A">initial encounter</extension>
+          </sevenChrDef>
+        </diag>
+      </diag>
+    </section>
+  </chapter>
+  <chapter>
+    <name>14</name>
+    <desc>Diseases of the genitourinary system (N00-N99)</desc>
+    <section id="N40-N53">
+      <desc>Diseases of male genital organs (N40-N53)</desc>
+      <diag>
+        <name>N40</name>
+        <desc>Enlarged prostate</desc>
+      </diag>
+    </section>
+    <section id="N70-N77">
+      <desc>Inflammatory diseases of female pelvic organs (N70-N77)</desc>
+      <diag>
+        <name>N70</name>
+        <desc>Salpingitis and oophoritis</desc>
+      </diag>
+    </section>
+  </chapter>
+  <chapter>
+    <name>16</name>
+    <desc>Certain conditions originating in the perinatal period (P00-P96)</desc>
+    <section id="P05-P08">
+      <desc>Disorders related to fetal growth (P05-P08)</desc>
+      <diag>
+        <name>P07</name>
+        <desc>Disorders related to short gestation and low birth weight, not elsewhere classified</desc>
+      </diag>
+    </section>
+  </chapter>
+</ICD10CM.tabular>

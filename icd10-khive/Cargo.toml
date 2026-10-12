@@ -1,0 +1,16 @@
+[package]
+name = "icd10-khive"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+description = "The stock khive CLI (kkernel) with the icd10 pack force-linked."
+publish = false
+
+[[bin]]
+name = "icd10-khive"
+path = "src/main.rs"
+
+[dependencies]
+kkernel = { workspace = true }
+khive-pack-icd10 = { path = "../pack-icd10" }
+anyhow = { workspace = true }

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ICD10CM.index>
+  <version>2026-fixture</version>
+  <title>ICD-10-CM INDEX TO DISEASES and INJURIES (fixture)</title>
+  <letter>
+    <title>C</title>
+    <mainTerm>
+      <title>Cholesterolosis<nemod>(-osis)</nemod></title>
+      <term level="1">
+        <title>gallbladder</title>
+        <code>K82.4</code>
+      </term>
+    </mainTerm>
+    <mainTerm>
+      <title>Cholecystitis</title>
+      <code>K81.9</code>
+    </mainTerm>
+    <mainTerm>
+      <title>Concussion</title>
+      <code>S06.0X0</code>
+    </mainTerm>
+    <mainTerm>
+      <title>Concussive</title>
+      <see>Concussion</see>
+    </mainTerm>
+    <mainTerm>
+      <title>Gallbladder disorder NEC</title>
+      <seeAlso>Cholecystitis</seeAlso>
+      <code>K82</code>
+    </mainTerm>
+    <!-- Added for the medical-graph guideline-arm test: a real Index
+         shorthand clinicians actually write ("CKD" for chronic kidney
+         disease) that no tabular icd_code DESCRIPTION contains as a word,
+         so a mention using it hits ONLY this Index term -> N18.30 directly,
+         never I12.9 -- whose own description restates "chronic kidney
+         disease" verbatim (real ICD-10-CM combination-code wording) and so
+         is indistinguishable from N18.30's by tabular AND-mode text search
+         on any vocabulary the two codes' descriptions actually share. -->
+    <mainTerm>
+      <title>CKD</title>
+      <code>N18.30</code>
+    </mainTerm>
+  </letter>
+</ICD10CM.index>
