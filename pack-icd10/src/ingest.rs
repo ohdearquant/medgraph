@@ -16,7 +16,7 @@ use serde_json::{json, Value};
 use uuid::Uuid;
 
 use crate::model::{IndexParse, Laterality, Specificity, TabularParse, TermRec};
-use crate::refs::{extract_code_refs, resolve_ref, RefKind};
+use crate::refs::{extract_code_refs, resolve_ref, resolve_refs, RefKind};
 use crate::{xml_index, xml_tabular};
 
 const ENTITY_BATCH: usize = 1000;
@@ -544,43 +544,43 @@ fn resolve_notes_into(
             continue;
         }
         for tok in refs {
-            match resolve_ref(&tok, categories, codes, blocks) {
-                Some(r) if r.kind != RefKind::Block => {
-                    let target_id = if r.kind == RefKind::Code {
-                        code_ids.get(&r.key).copied()
-                    } else {
-                        category_ids.get(&r.key).copied()
-                    };
-                    let Some(target_id) = target_id else {
-                        unresolved.push(format!(
-                            "{role} {tok:?} on {this_code} (no entity for {})",
-                            r.key
-                        ));
-                        *unresolved_count += 1;
-                        continue;
-                    };
-                    if target_id == this_id {
-                        continue;
-                    }
-                    let (source_id, dest_id) = if reverse_direction {
-                        (target_id, this_id)
-                    } else {
-                        (this_id, target_id)
-                    };
-                    push_edge(
-                        edge_acc,
-                        source_id,
-                        dest_id,
-                        relation,
-                        role,
-                        Some(note.clone()),
-                    );
-                    *role_counts.entry(role).or_insert(0) += 1;
-                }
-                _ => {
-                    unresolved.push(format!("{role} {tok:?} on {this_code}"));
+            let resolved = resolve_refs(&tok, categories, codes, blocks);
+            if resolved.is_empty() || resolved.iter().any(|r| r.kind == RefKind::Block) {
+                unresolved.push(format!("{role} {tok:?} on {this_code}"));
+                *unresolved_count += 1;
+                continue;
+            }
+            for r in resolved {
+                let target_id = if r.kind == RefKind::Code {
+                    code_ids.get(&r.key).copied()
+                } else {
+                    category_ids.get(&r.key).copied()
+                };
+                let Some(target_id) = target_id else {
+                    unresolved.push(format!(
+                        "{role} {tok:?} on {this_code} (no entity for {})",
+                        r.key
+                    ));
                     *unresolved_count += 1;
+                    continue;
+                };
+                if target_id == this_id {
+                    continue;
                 }
+                let (source_id, dest_id) = if reverse_direction {
+                    (target_id, this_id)
+                } else {
+                    (this_id, target_id)
+                };
+                push_edge(
+                    edge_acc,
+                    source_id,
+                    dest_id,
+                    relation,
+                    role,
+                    Some(note.clone()),
+                );
+                *role_counts.entry(role).or_insert(0) += 1;
             }
         }
     }
@@ -814,14 +814,12 @@ fn accumulate_notes(
         ] {
             for note in notes {
                 for tok in extract_code_refs(note) {
-                    match resolve_ref(&tok, categories, codes, blocks) {
-                        Some(r) if r.kind != RefKind::Block => {
-                            *role_counts.entry(role).or_insert(0) += 1;
-                        }
-                        _ => {
-                            unresolved.push(format!("{role} {tok:?} on {}", code.code));
-                            *unresolved_count += 1;
-                        }
+                    let resolved = resolve_refs(&tok, categories, codes, blocks);
+                    if resolved.is_empty() || resolved.iter().any(|r| r.kind == RefKind::Block) {
+                        unresolved.push(format!("{role} {tok:?} on {}", code.code));
+                        *unresolved_count += 1;
+                    } else {
+                        *role_counts.entry(role).or_insert(0) += resolved.len();
                     }
                 }
             }
